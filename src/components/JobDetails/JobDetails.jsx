@@ -1,17 +1,19 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { saveJobapplication } from "../../Utility/localstorage";
+
 const JobDetails = () => {
     const jobs = useLoaderData();
     const { id } = useParams();
+    const navigate = useNavigate();
     const idInt = parseInt(id);
     const job = jobs.find(job => job.id === idInt);
 
-    const handleApplyJob = () =>{
+    const handleApplyJob = () => {
         saveJobapplication(idInt);
         toast('You have applied successfully');
-        
+        navigate('/applied');
     }
 
     if (!job) {
@@ -34,14 +36,17 @@ const JobDetails = () => {
                     <h2 className="text-2xl font-bold border-b mb-4">Job Details</h2>
 
                     <p><strong>Salary:</strong> {salary}</p>
-                    <p><strong>Job Title</strong> {job_title}</p>
+                    <p><strong>Job Title:</strong> {job_title}</p>
                     <h2 className="font-bold my-4 border-b">Contact Information</h2>
                     <p><strong>Phone:</strong> {contact_information.phone}</p>
                     <p><strong>Email:</strong> {contact_information.email}</p>
                     <p><strong>Address:</strong> {contact_information.address}</p>
                     <button 
-                    onClick={handleApplyJob}
-                    className="btn btn-primary w-full mt-4">Apply Now</button>
+                        onClick={handleApplyJob}
+                        className="btn btn-primary w-full mt-4"
+                    >
+                        Apply Now
+                    </button>
                 </div>
             </div>
             <ToastContainer />

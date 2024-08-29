@@ -10,7 +10,7 @@ const CategoryList = () => {
         <h2 className="text-4xl">Job Category List</h2>
         <p>Explore thousands of job opportunities with all the information you need. Its your future</p>
       </div>
-      <div className='flex my-20 gap-10'>
+      <div className='grid lg:grid-cols-4  md:grid-cols-2 grid-cols-1 mx-10 md:mx-0 my-20 gap-10'>
 
         <div>
           <div className="card bg-base-100 w-72 shadow-xl">
